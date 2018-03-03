@@ -1,0 +1,113 @@
+<div>
+    <h2>Lançamentos</h2>
+    <jhi-alert></jhi-alert>
+
+        <form name="editForm">
+            <div class="form-group">
+            <label for="comanda" >Comanda: </label>
+            <input type="number" class="form-control" id="comanda" name="id"
+                    ng-model="vm.numerocomanda" ng-model-options='{ debounce: 1000 }' ng-change="buscacomanda()" required/>
+            <div ng-if="vm.cliente != null">
+                <span class="glyphicon glyphicon-ok"></span>
+                {{vm.cliente}}
+            </div>
+            <div ng-if="vm.comandanaoencontrada">
+                <span class="glyphicon glyphicon-remove"></span>
+                Comanda não encontrada!
+            </div>
+            </div>
+
+
+            
+
+        <div class="form-group">
+            <label for="produto">Produtos</label>
+            <input type="text" class="form-control" id="produto" name="id"
+                    ng-model="vm.nomeproduto" ng-model-options='{ debounce: 1000 }' ng-change="buscaproduto()"
+                    required/>
+                    <div ng-if="vm.produto != null">
+                <span class="glyphicon glyphicon-ok"></span>
+                {{vm.produto}}
+            </div>
+            <div ng-if="vm.produtonaoencontrado">
+                <span class="glyphicon glyphicon-remove"></span>
+                Produto não encontrado!
+            </div>
+        </div>
+
+
+        
+            
+                <div ng-repeat="produto in vm.produtos track by produto.id">
+                    <!-- <p><a ui-sref="produto-detail({id:produto.id})">{{produto.id}}</a></p> -->
+
+                    <div style="padding:10px; border-style: solid; border-color:lightgray;border-width: 1px;">
+
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <h5>{{produto.nome}}</h5>
+                                    <span>Valor: {{produto.valor | currency:""}}</span>
+                                </div>
+                                <div class="col-xs-4 no-padding text-right">
+                                    <button type="submit"
+                                    ng-click="add(produto)"
+                                    class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                    </button>
+                                    <button type="submit"
+                                    ng-click="remove(produto)"
+                                    class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-minus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+<!-- 
+                    <p class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ng-click="add(produto)"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+
+                            <div></div>
+                            
+                            <button type="submit"
+                                    ng-click="remove(produto)"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </button>
+                            
+                        </div>
+                    </p> -->
+                </div>
+
+                <br/>
+
+        </div>
+
+        <label>Adicionados</label>
+        <div class="table table-responsive">
+            <div ng-repeat="produto in vm.produtosadicionados track by produto.nome">
+                <div style="padding: 10px">
+                <span>{{produto.quantidade}}x </span>
+                <span>{{produto.nome}}  </span>
+                <span ng-click="exclui(produto)" class="glyphicon glyphicon-remove"></span>
+                </div>
+                
+            </div>
+        </div>
+
+
+
+
+
+        </form>
+        
+        <button ng-click="lancar()" class="btn btn-primary" ng-disabled="editForm.$invalid || vm.isSaving || vm.comandanaoencontrada || vm.produtonaoencontrado">
+            Confirmar
+        </button>
+
+</div>

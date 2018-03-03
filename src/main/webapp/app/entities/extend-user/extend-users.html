@@ -1,0 +1,77 @@
+<div>
+    <h2 data-translate="noon07App.extendUser.home.title">Extend Users</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="extend-user.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span class="hidden-xs-down"  data-translate="noon07App.extendUser.home.createLabel">
+                        Create new Extend User
+                    </span>
+                </button>
+            </div>
+            <div class="col-xs-8 no-padding-right">
+                <form name="searchForm" class="form-inline">
+                    <div class="input-group pull-right" >
+                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'noon07App.extendUser.home.search' | translate }}">
+                        <span  class="input-group-btn width-min" >
+                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                            <button class="btn btn-info" ng-click="vm.clear()">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="setor"><span data-translate="noon07App.extendUser.setor">Setor</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span data-translate="noon07App.extendUser.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="extendUser in vm.extendUsers track by extendUser.id">
+                    <td><a ui-sref="extend-user-detail({id:extendUser.id})">{{extendUser.id}}</a></td>
+                    <td data-translate="{{'noon07App.Setor.' + extendUser.setor}}">{{extendUser.setor}}</td>
+                    <td>
+                        {{extendUser.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="extend-user-detail({id:extendUser.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="extend-user.edit({id:extendUser.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="extend-user.delete({id:extendUser.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

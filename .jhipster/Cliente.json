@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "comanda",
+            "otherEntityName": "comanda",
+            "otherEntityRelationshipName": "cliente"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "documento",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "telefone",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180226131951",
+    "entityTableName": "cliente",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
+}

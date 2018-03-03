@@ -1,0 +1,11 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20180228192622",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "lancamento",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

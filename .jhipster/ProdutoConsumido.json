@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "comanda",
+            "otherEntityName": "comanda",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "idproduto",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20180226131952",
+    "entityTableName": "produto_consumido",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
+}

@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "produto",
+            "otherEntityName": "produtoConsumido",
+            "otherEntityRelationshipName": "comanda"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "numero",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "total",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusComanda",
+            "fieldValues": "ABERTA,FECHADA,CANCELADA"
+        }
+    ],
+    "changelogDate": "20180226131949",
+    "entityTableName": "comanda",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
+}

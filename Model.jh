@@ -1,0 +1,60 @@
+
+enum Setor{
+	BAR,
+    RECEPCAO,
+    CAIXA,
+    GERENCIA
+}
+
+enum StatusComanda{
+	ABERTA,
+    FECHADA,
+    CANCELADA
+}
+
+entity Comanda{
+	numero Integer required
+    data LocalDate required
+	total Float
+    status StatusComanda
+}
+
+entity ExtendUser{
+    setor Setor
+}
+
+entity Cliente{
+	nome String
+    documento String
+    telefone String
+}
+
+entity ProdutoConsumido{
+	idproduto Integer
+    nome String
+    valor Float
+ 	quantidade Integer   
+}
+
+entity Produto{
+	nome String
+    valor Float
+}
+
+
+relationship OneToMany{
+	Cliente{comanda} to Comanda{cliente} 
+}
+
+relationship OneToOne{
+	ExtendUser{user} to User
+}
+
+relationship OneToMany{
+	Comanda{produto} to ProdutoConsumido{comanda}
+}
+
+
+paginate * with infinite-scroll
+filter *
+service all with serviceImpl

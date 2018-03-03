@@ -1,0 +1,27 @@
+
+{
+    "noon07App": {
+        "produtoConsumido" : {
+            "home": {
+                "title": "Produto Consumidos",
+                "createLabel": "Criar novo Produto Consumido",
+                "createOrEditLabel": "Criar ou editar Produto Consumido",
+                "search": "Pesquisar por Produto Consumido"
+            },
+            "created": "Um novo Produto Consumido foi criado com o identificador {{ param }}",
+            "updated": "Um Produto Consumido foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Produto Consumido foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Produto Consumido {{ id }}?"
+            },
+            "detail": {
+                "title": "Produto Consumido"
+            },
+            "idproduto": "Idproduto",
+            "nome": "Nome",
+            "valor": "Valor",
+            "quantidade": "Quantidade",
+            "comanda": "Comanda"
+        }
+    }
+}

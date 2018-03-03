@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="noon07App.comanda.detail.title">Comanda</span> {{vm.comanda.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="noon07App.comanda.numero">Numero</span></dt>
+        <dd>
+            <span>{{vm.comanda.numero}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.comanda.data">Data</span></dt>
+        <dd>
+            <span>{{vm.comanda.data | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.comanda.total">Total</span></dt>
+        <dd>
+            <span>{{vm.comanda.total}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.comanda.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'noon07App.StatusComanda.' + vm.comanda.status}}">{{vm.comanda.status}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.comanda.cliente">Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.comanda.cliente.id})">{{vm.comanda.cliente.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="comanda-detail.edit({id:vm.comanda.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

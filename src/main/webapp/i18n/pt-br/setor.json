@@ -1,0 +1,11 @@
+{
+    "noon07App": {
+        "Setor" : {
+            "null": "",
+            "BAR": "BAR",
+            "RECEPCAO": "RECEPCAO",
+            "CAIXA": "CAIXA",
+            "GERENCIA": "GERENCIA"
+        }
+    }
+}

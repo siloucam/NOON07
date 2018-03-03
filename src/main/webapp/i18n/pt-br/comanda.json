@@ -1,0 +1,28 @@
+
+{
+    "noon07App": {
+        "comanda" : {
+            "home": {
+                "title": "Comandas",
+                "createLabel": "Criar novo Comanda",
+                "createOrEditLabel": "Criar ou editar Comanda",
+                "search": "Pesquisar por Comanda"
+            },
+            "created": "Um novo Comanda foi criado com o identificador {{ param }}",
+            "updated": "Um Comanda foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Comanda foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Comanda {{ id }}?"
+            },
+            "detail": {
+                "title": "Comanda"
+            },
+            "numero": "Numero",
+            "data": "Data",
+            "total": "Total",
+            "status": "Status",
+            "produto": "Produto",
+            "cliente": "Cliente"
+        }
+    }
+}

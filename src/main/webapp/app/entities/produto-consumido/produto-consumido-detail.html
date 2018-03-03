@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="noon07App.produtoConsumido.detail.title">Produto Consumido</span> {{vm.produtoConsumido.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="noon07App.produtoConsumido.idproduto">Idproduto</span></dt>
+        <dd>
+            <span>{{vm.produtoConsumido.idproduto}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.produtoConsumido.nome">Nome</span></dt>
+        <dd>
+            <span>{{vm.produtoConsumido.nome}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.produtoConsumido.valor">Valor</span></dt>
+        <dd>
+            <span>{{vm.produtoConsumido.valor}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.produtoConsumido.quantidade">Quantidade</span></dt>
+        <dd>
+            <span>{{vm.produtoConsumido.quantidade}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.produtoConsumido.comanda">Comanda</span></dt>
+        <dd>
+            <a ui-sref="comanda-detail({id:vm.produtoConsumido.comanda.id})">{{vm.produtoConsumido.comanda.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="produto-consumido-detail.edit({id:vm.produtoConsumido.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

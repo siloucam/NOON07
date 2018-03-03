@@ -1,0 +1,27 @@
+
+<div>
+    <h2><span data-translate="noon07App.extendUser.detail.title">Extend User</span> {{vm.extendUser.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="noon07App.extendUser.setor">Setor</span></dt>
+        <dd>
+            <span data-translate="{{'noon07App.Setor.' + vm.extendUser.setor}}">{{vm.extendUser.setor}}</span>
+        </dd>
+        <dt><span data-translate="noon07App.extendUser.user">User</span></dt>
+        <dd>
+            {{vm.extendUser.user.id}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="extend-user-detail.edit({id:vm.extendUser.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

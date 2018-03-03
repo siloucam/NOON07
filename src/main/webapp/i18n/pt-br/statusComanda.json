@@ -1,0 +1,10 @@
+{
+    "noon07App": {
+        "StatusComanda" : {
+            "null": "",
+            "ABERTA": "ABERTA",
+            "FECHADA": "FECHADA",
+            "CANCELADA": "CANCELADA"
+        }
+    }
+}

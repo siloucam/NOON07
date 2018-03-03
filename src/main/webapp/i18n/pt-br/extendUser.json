@@ -1,0 +1,24 @@
+
+{
+    "noon07App": {
+        "extendUser" : {
+            "home": {
+                "title": "Extend Users",
+                "createLabel": "Criar novo Extend User",
+                "createOrEditLabel": "Criar ou editar Extend User",
+                "search": "Pesquisar por Extend User"
+            },
+            "created": "Um novo Extend User foi criado com o identificador {{ param }}",
+            "updated": "Um Extend User foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Extend User foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Extend User {{ id }}?"
+            },
+            "detail": {
+                "title": "Extend User"
+            },
+            "setor": "Setor",
+            "user": "User"
+        }
+    }
+}

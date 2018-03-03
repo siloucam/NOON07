@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180226131953",
+    "entityTableName": "produto",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131949_added_entity_Comanda.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131950_added_entity_ExtendUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131951_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131952_added_entity_ProdutoConsumido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131953_added_entity_Produto.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180226131949_added_entity_constraints_Comanda.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131950_added_entity_constraints_ExtendUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180226131952_added_entity_constraints_ProdutoConsumido.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>
