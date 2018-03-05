@@ -5,15 +5,15 @@
     .module('noon07App')
     .controller('ComandaDialogController', ComandaDialogController);
 
-    ComandaDialogController.$inject = ['$http','AlertService', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Comanda', 'ProdutoConsumido', 'Cliente'];
+    ComandaDialogController.$inject = ['Principal','$http','AlertService', '$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Comanda', 'ProdutoConsumido', 'Cliente'];
 
-    function ComandaDialogController ($http, AlertService, $timeout, $scope, $stateParams, $uibModalInstance, entity, Comanda, ProdutoConsumido, Cliente) {
+    function ComandaDialogController (Principal, $http, AlertService, $timeout, $scope, $stateParams, $uibModalInstance, entity, Comanda, ProdutoConsumido, Cliente) {
         var vm = this;
 
         vm.comanda = entity;
 
         vm.corfirmafechar = false;
-        vm.corfirmacancelar = false;
+        vm.corfirmacancelar = false;                                                   
 
         console.log(vm.comanda);
 
@@ -26,7 +26,38 @@
 
         vm.produtos = [];
 
+        vm.account = null;
+
+        vm.setor = null;
+        
+        getAccount();
+
         loadConsumo();
+
+        $scope.removeproduto = function(produto){
+            ProdutoConsumido.delete(produto, function(){
+                loadConsumo();
+            });
+        }
+
+         function getAccount() {
+            Principal.identity().then(function(account) {
+
+                if(account){
+                    vm.account = account;
+                    vm.isAuthenticated = Principal.isAuthenticated;
+                    console.log(vm.account);
+
+                    $http.get('http://localhost:9000/api/extend-users?userId.equals=' + vm.account.id, 
+                        {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
+                    .then(function(response) {
+                        console.log(response.data);
+                        vm.setor = response.data[0].setor;
+                        console.log(vm.setor);
+                    });}
+
+                });
+        }
 
         $scope.fecharcomanda = function(){
 
@@ -44,6 +75,8 @@
         }
 
         function loadConsumo(){
+
+            vm.produtos = [];
 
             $http.get('http://localhost:9000/api/produto-consumidos?comandaId.equals=' + vm.comanda.id, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
@@ -71,7 +104,7 @@
                 }
 
                 // vm.produtos = response.data;
-
+                        vm.comanda.total = 0;
                         //Calcula Total
                         for(var i = 0; i < vm.produtos.length; i++){
 

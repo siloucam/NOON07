@@ -1,0 +1,22 @@
+
+{
+    "noon07App": {
+        "relatorio" : {
+            "home": {
+                "title": "Relatorios",
+                "createLabel": "Criar novo Relatorio",
+                "createOrEditLabel": "Criar ou editar Relatorio",
+                "search": "Pesquisar por Relatorio"
+            },
+            "created": "Um novo Relatorio foi criado com o identificador {{ param }}",
+            "updated": "Um Relatorio foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Relatorio foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Relatorio {{ id }}?"
+            },
+            "detail": {
+                "title": "Relatorio"
+            }
+        }
+    }
+}

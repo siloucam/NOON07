@@ -1,0 +1,116 @@
+<div>
+    <h2>Relatórios</h2>
+
+    <!-- <jhi-alert></jhi-alert> -->
+    
+<!--     <div class="form-group">
+        <input type="number" placeholder="Dia" class="form-control" ng-model="vm.dia"></div>
+        <input type="number" placeholder="Mês" class="form-control" ng-model="vm.mes"></div>
+        <input type="number" placeholder="Ano" class="form-control" ng-model="vm.ano"></div>
+    </div>
+
+-->
+
+
+
+<div class="form-group">
+    <button ng-click="datadehoje()" class="btn btn-default"><span class="glyphicon glyphicon-calendar"></span> Hoje</button>
+</div>
+
+<div class="container-fluid form-group">
+    <div class="row">
+
+        <div class="col-xs-4">
+            <label>Dia</label>
+            <input type="number" class="form-control" ng-model="vm.dia"></input>
+        </div>
+
+        <div class="col-xs-4">
+            <label>Mês</label>
+            <input type="number" class="form-control" ng-model="vm.mes"></input>
+        </div>
+
+        <div class="col-xs-4">
+            <label>Ano</label>
+            <input type="number" class="form-control" ng-model="vm.ano"></input>
+        </div>
+
+        
+
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <button ng-click="gerarrelatiorio()" class="btn btn-primary"><span class="glyphicon glyphicon-stats"></span> Gerar Relatório</button>
+</div>
+
+</br>
+
+<div ng-show="vm.gerado">
+
+<div class="form-group">
+    
+    <b>Comandas</b>   
+
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Total</span></dt>
+        <dd>
+            <span>{{vm.numerodecomandas}}</span>
+        </dd>
+        <dt><span>Consumo</span></dt>
+        <dd>
+            <span>{{vm.consumo | currency}}</span>
+        </dd>
+    </dl>
+
+</div>
+
+<div class="form-group">
+    
+    <b>Produtos Consumidos</b>
+
+    <table class="jh-table table table-striped">
+        <thead>
+            <tr>
+                <!-- <th><span>ID</span> </th> -->
+                <th><span>Qtd</span></th>
+                <th><span>Produto</span></th>
+                <th><span>Valor Uni.</span></th>
+                <th><span>Total</span></th>
+                <!-- <th><span>Cliente</span> </th> -->
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="produto in vm.produtos track by produto.id">
+                <!-- <td><a ui-sref="telefone-detail({id:telefone.id})">{{telefone.id}}</a></td> -->
+                <td>{{produto.quantidade}}</td>
+                <td>{{produto.nome}}</td>
+                <td>{{produto.valor | currency:""}}</td>
+                <td>{{produto.valor*produto.quantidade | currency:""}}</td>
+                <td class="text-right" ng-if="vm.setor=='GERENCIA'">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                        ng-click="removeproduto(produto)"
+                        class="btn btn-default">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        <span class="hidden-sm-down"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>   
+
+
+</div>
+</div>
+
+
+
+
+
+
+</div>

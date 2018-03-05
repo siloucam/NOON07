@@ -90,7 +90,7 @@
                     consumido.quantidade = 1;
 
                     ProdutoConsumido.save(consumido, function(){
-                            console.log("Salvou");
+                        console.log("Salvou");
                         AlertService.info("Cliente salvo com sucesso!");
                         AlertService.info("Comanda aberta com sucesso!");
                         $uibModalInstance.close(result);

@@ -36,6 +36,16 @@
                     <td>{{produto.nome}}</td>
                     <td>{{produto.valor | currency:""}}</td>
                     <td>{{produto.valor*produto.quantidade | currency:""}}</td>
+                    <td class="text-right" ng-if="vm.setor=='GERENCIA'">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ng-click="removeproduto(produto)"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="hidden-sm-down"></span>
+                            </button>
+                        </div>
+                    </td>
         </tr>
     </tbody>
 </table>
