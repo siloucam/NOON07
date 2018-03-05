@@ -8,7 +8,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <div class="form-group" ng-show="vm.cliente.id">
+        <div class="form-group" hidden>
             <label for="id" data-translate="global.field.id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.cliente.id" readonly />
@@ -32,16 +32,30 @@
                     />
         </div>
 
+
+        <div ng-if="vm.cliente.id==null">
         <div class="form-group">
             <label>Abrir Comanda</label>
         </div>
         
         <div class="form-group">
             <label class="control-label" for="field_numero">Número</label>
-            <input type="number" class="form-control" name="numero" id="field_numero"
+            <input type="number" ng-change="verificanumero()" class="form-control" name="numero" id="field_numero"
                     ng-model="vm.numerocomanda"
                     />
+            <p ng-show="vm.numeroindisponivel"><span class="glyphicon glyphicon-remove"></span>Este número já esta em uso!</p>
         
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de Entrada</label>
+            <select class="form-control" ng-model="vm.entrada" ng-options="x as x.nome for x in vm.entradas" ng-required="vm.numerocomanda">
+            </select>
+        </div>
+
+
+
+
     </div>
 
     </div>
@@ -49,7 +63,7 @@
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
             <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
         </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving || vm.numeroindisponivel" class="btn btn-primary">
             <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
         </button>
     </div>

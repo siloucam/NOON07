@@ -1,0 +1,24 @@
+
+{
+    "noon07App": {
+        "entrada" : {
+            "home": {
+                "title": "Entradas",
+                "createLabel": "Criar novo Entrada",
+                "createOrEditLabel": "Criar ou editar Entrada",
+                "search": "Pesquisar por Entrada"
+            },
+            "created": "Um novo Entrada foi criado com o identificador {{ param }}",
+            "updated": "Um Entrada foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Entrada foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Entrada {{ id }}?"
+            },
+            "detail": {
+                "title": "Entrada"
+            },
+            "nome": "Nome",
+            "valor": "Valor"
+        }
+    }
+}

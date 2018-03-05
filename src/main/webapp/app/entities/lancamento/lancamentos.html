@@ -6,7 +6,7 @@
             <div class="form-group">
             <label for="comanda" >Comanda: </label>
             <input type="number" class="form-control" id="comanda" name="id"
-                    ng-model="vm.numerocomanda" ng-model-options='{ debounce: 1000 }' ng-change="buscacomanda()" required/>
+                    ng-model="vm.numerocomanda" ng-change="buscacomanda()" required/>
             <div ng-if="vm.cliente != null">
                 <span class="glyphicon glyphicon-ok"></span>
                 {{vm.cliente}}
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="produto">Produtos</label>
             <input type="text" class="form-control" id="produto" name="id"
-                    ng-model="vm.nomeproduto" ng-model-options='{ debounce: 1000 }' ng-change="buscaproduto()"
+                    ng-model="vm.nomeproduto" ng-change="buscaproduto()"
                     required/>
                     <div ng-if="vm.produto != null">
                 <span class="glyphicon glyphicon-ok"></span>
@@ -106,7 +106,7 @@
 
         </form>
         
-        <button ng-click="lancar()" class="btn btn-primary" ng-disabled="editForm.$invalid || vm.isSaving || vm.comandanaoencontrada || vm.produtonaoencontrado">
+        <button ng-click="lancar()" class="btn btn-primary" ng-disabled="editForm.$invalid || vm.isSaving || vm.comandanaoencontrada || vm.produtonaoencontrado || vm.produtosadicionados.length<1">
             Confirmar
         </button>
 

@@ -12,6 +12,7 @@
                 "cliente": "Cliente",
                 "produtoConsumido": "Produto Consumido",
                 "produto": "Produto",
+                "entrada": "Entrada",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

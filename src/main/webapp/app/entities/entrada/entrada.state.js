@@ -9,53 +9,53 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('produto', {
+        .state('entrada', {
             parent: 'entity',
-            url: '/produto',
+            url: '/entrada',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'noon07App.produto.home.title'
+                pageTitle: 'noon07App.entrada.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/produto/produtos.html',
-                    controller: 'ProdutoController',
+                    templateUrl: 'app/entities/entrada/entradas.html',
+                    controller: 'EntradaController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('produto');
+                    $translatePartialLoader.addPart('entrada');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('produto-detail', {
-            parent: 'produto',
-            url: '/produto/{id}',
+        .state('entrada-detail', {
+            parent: 'entrada',
+            url: '/entrada/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'noon07App.produto.detail.title'
+                pageTitle: 'noon07App.entrada.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/produto/produto-detail.html',
-                    controller: 'ProdutoDetailController',
+                    templateUrl: 'app/entities/entrada/entrada-detail.html',
+                    controller: 'EntradaDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('produto');
+                    $translatePartialLoader.addPart('entrada');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Produto', function($stateParams, Produto) {
-                    return Produto.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'Entrada', function($stateParams, Entrada) {
+                    return Entrada.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'produto',
+                        name: $state.current.name || 'entrada',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -63,22 +63,22 @@
                 }]
             }
         })
-        .state('produto-detail.edit', {
-            parent: 'produto-detail',
+        .state('entrada-detail.edit', {
+            parent: 'entrada-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/produto/produto-dialog.html',
-                    controller: 'ProdutoDialogController',
+                    templateUrl: 'app/entities/entrada/entrada-dialog.html',
+                    controller: 'EntradaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Produto', function(Produto) {
-                            return Produto.get({id : $stateParams.id}).$promise;
+                        entity: ['Entrada', function(Entrada) {
+                            return Entrada.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -88,16 +88,16 @@
                 });
             }]
         })
-        .state('produto.new', {
-            parent: 'produto',
+        .state('entrada.new', {
+            parent: 'entrada',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/produto/produto-dialog.html',
-                    controller: 'ProdutoDialogController',
+                    templateUrl: 'app/entities/entrada/entrada-dialog.html',
+                    controller: 'EntradaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'md',
@@ -111,56 +111,56 @@
                         }
                     }
                 }).result.then(function() {
-                    $state.go('produto', null, { reload: 'produto' });
+                    $state.go('entrada', null, { reload: 'entrada' });
                 }, function() {
-                    $state.go('produto');
+                    $state.go('entrada');
                 });
             }]
         })
-        .state('produto.edit', {
-            parent: 'produto',
+        .state('entrada.edit', {
+            parent: 'entrada',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/produto/produto-dialog.html',
-                    controller: 'ProdutoDialogController',
+                    templateUrl: 'app/entities/entrada/entrada-dialog.html',
+                    controller: 'EntradaDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'md',
                     resolve: {
-                        entity: ['Produto', function(Produto) {
-                            return Produto.get({id : $stateParams.id}).$promise;
+                        entity: ['Entrada', function(Entrada) {
+                            return Entrada.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('produto', null, { reload: 'produto' });
+                    $state.go('entrada', null, { reload: 'entrada' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('produto.delete', {
-            parent: 'produto',
+        .state('entrada.delete', {
+            parent: 'entrada',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/produto/produto-delete-dialog.html',
-                    controller: 'ProdutoDeleteController',
+                    templateUrl: 'app/entities/entrada/entrada-delete-dialog.html',
+                    controller: 'EntradaDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Produto', function(Produto) {
-                            return Produto.get({id : $stateParams.id}).$promise;
+                        entity: ['Entrada', function(Entrada) {
+                            return Entrada.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('produto', null, { reload: 'produto' });
+                    $state.go('entrada', null, { reload: 'entrada' });
                 }, function() {
                     $state.go('^');
                 });

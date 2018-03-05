@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand logo" href="#/" ng-click="vm.collapseNavbar()">
                 <img class="logo-img" src="content/images/logo-jhipster.png" alt="logo"/>
-                <span data-translate="global.title">NOON07</span> <span class="navbar-version">v{{VERSION}}</span>
+                <span data-translate="global.title">NOON07</span>
             </a>
         </div>
         <div class="navbar-collapse" uib-collapse="vm.isNavbarCollapsed" ng-switch="vm.isAuthenticated()">
@@ -21,6 +21,12 @@
                     </a>
                 </li>
 
+                <li ui-sref-active="active" ng-if="vm.setor == 'BAR'">
+                                <a ui-sref="lancamento">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span>Lançamentos</span>
+                                </a>
+                            </li>
 
                 <li ui-sref-active="active" ng-if="vm.setor == 'RECEPCAO'">
                                 <a ui-sref="cliente">
@@ -43,8 +49,8 @@
                     <a class="dropdown-toggle" uib-dropdown-toggle href="" id="entity-menu">
                         <span>
                             <span class="glyphicon glyphicon-th-list"></span>
-                            <span class="hidden-sm" data-translate="global.menu.entities.main">
-                                Entities
+                            <span class="hidden-sm">
+                                Menu
                             </span>
                             <b class="caret"></b>
                         </span>
@@ -53,31 +59,45 @@
                         <li ui-sref-active="active">
                                 <a ui-sref="comanda" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.comanda">Comanda</span>
+                                    <span>Comandas</span>
                                 </a>
                             </li>
+
                         <li ui-sref-active="active">
+                                <a ui-sref="lancamento">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span>Lançamentos</span>
+                                </a>
+                            </li>
+                        <!-- <li ui-sref-active="active">
                                 <a ui-sref="extend-user" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                     <span data-translate="global.menu.entities.extendUser">Extend User</span>
                                 </a>
-                            </li>
+                            </li> -->
                         <li ui-sref-active="active">
                                 <a ui-sref="cliente" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.cliente">Cliente</span>
+                                    <span >Clientes</span>
                                 </a>
                             </li>
-                        <li ui-sref-active="active">
+                        <!-- <li ui-sref-active="active">
                                 <a ui-sref="produto-consumido" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
                                     <span data-translate="global.menu.entities.produtoConsumido">Produto Consumido</span>
                                 </a>
-                            </li>
+                            </li> -->
                         <li ui-sref-active="active">
                                 <a ui-sref="produto" ng-click="vm.collapseNavbar()">
                                     <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
-                                    <span data-translate="global.menu.entities.produto">Produto</span>
+                                    <span >Produtos</span>
+                                </a>
+                            </li>
+
+                            <li ui-sref-active="active">
+                                <a ui-sref="entrada" ng-click="vm.collapseNavbar()">
+                                    <span class="glyphicon glyphicon-asterisk"></span>&nbsp;
+                                    <span >Entradas</span>
                                 </a>
                             </li>
                         <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->

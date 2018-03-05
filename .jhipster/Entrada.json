@@ -1,0 +1,20 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "valor",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180304003046",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "entrada",
+    "jpaMetamodelFiltering": true,
+    "pagination": "infinite-scroll"
+}
