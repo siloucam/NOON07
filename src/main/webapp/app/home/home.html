@@ -12,8 +12,13 @@
 
             </br>
 
-                <button ng-if="!vm.isAuthenticated()" ng-click="vm.login()" class="btn btn-primary">
-                    Faça Login
+
+                <p ng-if="!vm.isAuthenticated()">Faça Login para ter acesso ao sistema.</p>
+
+            </br>
+
+                 <button ng-if="!vm.isAuthenticated()" ng-click="vm.login()" class="btn btn-default">
+                    <span class="glyphicon glyphicon-log-in"></span>  Entrar
                 </button>
 
             </div>

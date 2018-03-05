@@ -52,7 +52,10 @@
             <select class="form-control" ng-model="vm.entrada" ng-options="x as x.nome for x in vm.entradas" ng-required="vm.numerocomanda">
             </select>
         </div>
-
+        <div class="form-group">
+            <label>Valor da Entrada</label>
+            <p>{{vm.entrada.valor | currency:""}}</p>
+        </div>
 
 
 
