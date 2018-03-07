@@ -33,14 +33,19 @@ entity ProdutoConsumido{
 	idproduto Integer
     nome String
     valor Float
- 	quantidade Integer   
+ 	quantidade Integer
+    identrada Integer
+}
+
+entity Entrada{
+	nome String
+    valor Float
 }
 
 entity Produto{
 	nome String
     valor Float
 }
-
 
 relationship OneToMany{
 	Cliente{comanda} to Comanda{cliente} 

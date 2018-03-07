@@ -59,7 +59,8 @@ module.exports = function () {
         server: {
             baseDir: config.app,
             middleware: proxies
-        }
+        },
+        ghostMode: false
     });
 
     gulp.start('watch');

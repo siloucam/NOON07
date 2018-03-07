@@ -25,6 +25,8 @@
         vm.loadAll = loadAll;
         vm.search = search;
 
+        var currentLocation = window.location;
+
         clear();
 
         $scope.abrircomanda = function(comanda){
@@ -103,7 +105,7 @@
             // vm.loadAll();
 
 
-            $http.get('http://localhost:9000/api/comandas?status.in=ABERTA', 
+            $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA', 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 console.log(response);
@@ -113,7 +115,7 @@
 
         function search (searchQuery) {
             
-            $http.get('http://localhost:9000/api/comandas?status.in=ABERTA&numero.equals='+ searchQuery, 
+            $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ searchQuery, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 // console.log(response);

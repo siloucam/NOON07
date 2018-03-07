@@ -16,7 +16,7 @@
 logging:
     level:
         ROOT: DEBUG
-        com.outscape.noon: DEBUG
+        com.outscape.noon07: DEBUG
         io.github.jhipster: DEBUG
 
 spring:
@@ -32,29 +32,24 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:file:./target/h2db/db/noon07;DB_CLOSE_DELAY=-1
-        username: NOON07
-        password:
-    h2:
-        console:
-            enabled: false
+        url: jdbc:mysql://localhost:3306/noon07?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: noon07
+        password: outSc@p3
+        hikari:
+            data-source-properties:
+                cachePrepStmts: true
+                prepStmtCacheSize: 250
+                prepStmtCacheSqlLimit: 2048
+                useServerPrepStmts: true
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
-        database: H2
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: target/elasticsearch/log
-                    data: target/elasticsearch/data
     mail:
         host: localhost
         port: 25
@@ -106,16 +101,13 @@ jhipster:
         allowed-origins: "*"
         allowed-methods: "*"
         allowed-headers: "*"
-        exposed-headers: "Authorization,Link,X-Total-Count"
+        exposed-headers: "Link,X-Total-Count"
         allow-credentials: true
         max-age: 1800
     security:
-        authentication:
-            jwt:
-                secret: my-secret-token-to-change-in-production
-                # Token is valid 24 hours
-                token-validity-in-seconds: 86400
-                token-validity-in-seconds-for-remember-me: 2592000
+        remember-me:
+            # security key (this key should be unique for your application, and kept secret)
+            key: 42c5a2f59ca4a0b338eabb3cfc9e53c741ed66a0
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: NOON07@localhost
         base-url: http://127.0.0.1:8080

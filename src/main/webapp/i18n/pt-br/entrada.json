@@ -5,8 +5,7 @@
             "home": {
                 "title": "Entradas",
                 "createLabel": "Criar novo Entrada",
-                "createOrEditLabel": "Criar ou editar Entrada",
-                "search": "Pesquisar por Entrada"
+                "createOrEditLabel": "Criar ou editar Entrada"
             },
             "created": "Um novo Entrada foi criado com o identificador {{ param }}",
             "updated": "Um Entrada foi atualizado com o identificador {{ param }}",

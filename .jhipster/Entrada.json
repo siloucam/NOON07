@@ -11,10 +11,10 @@
             "fieldType": "Float"
         }
     ],
-    "changelogDate": "20180304003046",
-    "dto": "no",
-    "service": "serviceClass",
+    "changelogDate": "20180306153157",
     "entityTableName": "entrada",
-    "jpaMetamodelFiltering": true,
-    "pagination": "infinite-scroll"
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": true
 }

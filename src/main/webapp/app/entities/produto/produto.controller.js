@@ -5,9 +5,9 @@
         .module('noon07App')
         .controller('ProdutoController', ProdutoController);
 
-    ProdutoController.$inject = ['Produto', 'ProdutoSearch', 'ParseLinks', 'AlertService', 'paginationConstants'];
+    ProdutoController.$inject = ['$http','Produto', 'ProdutoSearch', 'ParseLinks', 'AlertService', 'paginationConstants'];
 
-    function ProdutoController(Produto, ProdutoSearch, ParseLinks, AlertService, paginationConstants) {
+    function ProdutoController($http,Produto, ProdutoSearch, ParseLinks, AlertService, paginationConstants) {
 
         var vm = this;
 
@@ -24,6 +24,8 @@
         vm.clear = clear;
         vm.loadAll = loadAll;
         vm.search = search;
+
+        var currentLocation = window.location;
 
         loadAll();
 
@@ -88,18 +90,26 @@
         }
 
         function search (searchQuery) {
-            if (!searchQuery){
-                return vm.clear();
-            }
-            vm.produtos = [];
-            vm.links = {
-                last: 0
-            };
-            vm.page = 0;
-            vm.predicate = '_score';
-            vm.reverse = false;
-            vm.currentSearch = searchQuery;
-            vm.loadAll();
+            // if (!searchQuery){
+            //     return vm.clear();
+            // }
+            // vm.produtos = [];
+            // vm.links = {
+            //     last: 0
+            // };
+            // vm.page = 0;
+            // vm.predicate = '_score';
+            // vm.reverse = false;
+            // vm.currentSearch = searchQuery;
+            // vm.loadAll();
+
+            $http.get('http://'+currentLocation.host+'/api/produtos?nome.contains='+ searchQuery, 
+                {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
+            .then(function(response) {
+                        vm.produtos = response.data;
+                    });
+
+
         }
     }
 })();

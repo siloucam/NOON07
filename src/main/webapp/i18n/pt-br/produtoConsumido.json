@@ -5,8 +5,7 @@
             "home": {
                 "title": "Produto Consumidos",
                 "createLabel": "Criar novo Produto Consumido",
-                "createOrEditLabel": "Criar ou editar Produto Consumido",
-                "search": "Pesquisar por Produto Consumido"
+                "createOrEditLabel": "Criar ou editar Produto Consumido"
             },
             "created": "Um novo Produto Consumido foi criado com o identificador {{ param }}",
             "updated": "Um Produto Consumido foi atualizado com o identificador {{ param }}",
@@ -21,6 +20,7 @@
             "nome": "Nome",
             "valor": "Valor",
             "quantidade": "Quantidade",
+            "identrada": "Identrada",
             "comanda": "Comanda"
         }
     }

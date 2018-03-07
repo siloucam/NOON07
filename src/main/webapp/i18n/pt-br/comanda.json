@@ -5,8 +5,7 @@
             "home": {
                 "title": "Comandas",
                 "createLabel": "Criar novo Comanda",
-                "createOrEditLabel": "Criar ou editar Comanda",
-                "search": "Pesquisar por Comanda"
+                "createOrEditLabel": "Criar ou editar Comanda"
             },
             "created": "Um novo Comanda foi criado com o identificador {{ param }}",
             "updated": "Um Comanda foi atualizado com o identificador {{ param }}",

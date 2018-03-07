@@ -22,7 +22,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20180226131951",
+    "changelogDate": "20180306153155",
     "entityTableName": "cliente",
     "dto": "no",
     "pagination": "infinite-scroll",

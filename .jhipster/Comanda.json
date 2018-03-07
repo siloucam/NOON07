@@ -39,7 +39,7 @@
             "fieldValues": "ABERTA,FECHADA,CANCELADA"
         }
     ],
-    "changelogDate": "20180226131949",
+    "changelogDate": "20180306153153",
     "entityTableName": "comanda",
     "dto": "no",
     "pagination": "infinite-scroll",

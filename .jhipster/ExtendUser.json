@@ -17,7 +17,7 @@
             "fieldValues": "BAR,RECEPCAO,CAIXA,GERENCIA"
         }
     ],
-    "changelogDate": "20180226131950",
+    "changelogDate": "20180306153154",
     "entityTableName": "extend_user",
     "dto": "no",
     "pagination": "infinite-scroll",

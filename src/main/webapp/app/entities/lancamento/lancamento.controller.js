@@ -29,6 +29,7 @@
         vm.isSaving = false;
         var i = 0;
 
+        var currentLocation = window.location;
 
         // loadAll();
 
@@ -143,7 +144,7 @@
                     // loadAll();
                     vm.produtos = [];
                 }else{
-                    $http.get('http://localhost:9000/api/produtos?nome.contains='+ vm.nomeproduto, 
+                    $http.get('http://'+currentLocation.host+'/api/produtos?nome.contains='+ vm.nomeproduto, 
                     {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                 .then(function(response) {
                     console.log(response);
@@ -165,7 +166,7 @@
 
             $scope.buscacomanda = function(){
 
-               $http.get('http://localhost:9000/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
+               $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                .then(function(response) {
                 console.log(response);
@@ -195,7 +196,7 @@
 
             vm.isSaving = false;        
 
-            $http.get('http://localhost:9000/api/produtos', 
+            $http.get('http://'+currentLocation.host+'/api/produtos', 
                     {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                 .then(function(response) {
                     console.log(response);

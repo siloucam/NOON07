@@ -25,6 +25,8 @@
 
         var comandasquery = "";
 
+        var currentLocation = window.location;
+
         vm.gerado = false;
 
         loadAll();
@@ -45,7 +47,7 @@
 
             comandasquery = "";
 
-            $http.get('http://localhost:9000/api/comandas', 
+            $http.get('http://'+currentLocation.host+'/api/comandas', 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
 
@@ -77,7 +79,7 @@
 
             console.log(comandasquery);
 
-            $http.get('http://localhost:9000/api/produto-consumidos?' + comandasquery, 
+            $http.get('http://'+currentLocation.host+'/api/produto-consumidos?' + comandasquery, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 console.log(response);

@@ -29,6 +29,8 @@
         vm.account = null;
 
         vm.setor = null;
+
+        var currentLocation = window.location;
         
         getAccount();
 
@@ -48,7 +50,7 @@
                     vm.isAuthenticated = Principal.isAuthenticated;
                     console.log(vm.account);
 
-                    $http.get('http://localhost:9000/api/extend-users?userId.equals=' + vm.account.id, 
+                    $http.get('http://'+currentLocation.host+'/api/extend-users?userId.equals=' + vm.account.id, 
                         {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                     .then(function(response) {
                         console.log(response.data);
@@ -78,7 +80,7 @@
 
             vm.produtos = [];
 
-            $http.get('http://localhost:9000/api/produto-consumidos?comandaId.equals=' + vm.comanda.id, 
+            $http.get('http://'+currentLocation.host+'/api/produto-consumidos?comandaId.equals=' + vm.comanda.id, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 console.log(response);

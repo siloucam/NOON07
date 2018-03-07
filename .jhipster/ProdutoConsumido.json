@@ -24,9 +24,13 @@
         {
             "fieldName": "quantidade",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "identrada",
+            "fieldType": "Integer"
         }
     ],
-    "changelogDate": "20180226131952",
+    "changelogDate": "20180306153156",
     "entityTableName": "produto_consumido",
     "dto": "no",
     "pagination": "infinite-scroll",

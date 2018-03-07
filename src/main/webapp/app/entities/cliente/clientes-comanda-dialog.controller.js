@@ -20,13 +20,15 @@
 
         vm.numeroindisponivel = false;
 
+        var currentLocation = window.location;
+
         loadEntradas();
 
         // console.log("Vai tentar abrir");
 
         $scope.verificanumero = function(){
             // console.log("verificando " + vm.comanda.numero);
-            $http.get('http://localhost:9000/api/comandas?status.in=ABERTA&numero.equals='+ vm.comanda.numero, 
+            $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ vm.comanda.numero, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                         // console.log("Deu que já tem comanda nesse numero!");                
@@ -42,7 +44,7 @@
         }
 
         function loadEntradas(){
-            $http.get('http://localhost:9000/api/entradas', 
+            $http.get('http://'+currentLocation.host+'/api/entradas', 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 console.log(response);

@@ -25,6 +25,8 @@
         vm.loadAll = loadAll;
         vm.search = search;
 
+        var currentLocation = window.location;
+
         // loadAll();
 
         $scope.debug = function(){
@@ -32,7 +34,7 @@
         }
 
         $scope.vesetemcomanda = function(cliente){
-            $http.get('http://localhost:9000/api/comandas?clienteId.equals='+ cliente.id, 
+            $http.get('http://'+currentLocation.host+'/api/comandas?clienteId.equals='+ cliente.id, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                         // console.log(response);
@@ -45,7 +47,7 @@
 
         $scope.newcomanda = function(cliente){
 
-            $http.get('http://localhost:9000/api/comandas?status.in=ABERTA&clienteId.equals='+ cliente.id, 
+            $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&clienteId.equals='+ cliente.id, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                         // console.log(response);
@@ -144,22 +146,31 @@
             vm.reverse = true;
             vm.searchQuery = null;
             vm.currentSearch = null;
-            vm.loadAll();
+            // vm.loadAll();
         }
 
         function search (searchQuery) {
-            if (!searchQuery){
-                return vm.clear();
-            }
-            vm.clientes = [];
-            vm.links = {
-                last: 0
-            };
-            vm.page = 0;
-            vm.predicate = '_score';
-            vm.reverse = false;
-            vm.currentSearch = searchQuery;
-            vm.loadAll();
+
+            // if (!searchQuery){
+            //     return vm.clear();
+            // }
+            // vm.clientes = [];
+            // vm.links = {
+            //     last: 0
+            // };
+            // vm.page = 0;
+            // vm.predicate = '_score';
+            // vm.reverse = false;
+            // vm.currentSearch = searchQuery;
+            // vm.loadAll();
+
+            $http.get('http://'+currentLocation.host+'/api/clientes?nome.contains='+ searchQuery, 
+                {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
+            .then(function(response) {
+                        vm.clientes = response.data;
+                    });            
+
+
         }
     }
 })();

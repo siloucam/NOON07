@@ -22,7 +22,13 @@
             location.reload();
         });
 
+        // var currentLocation = window.location;
+
         getAccount();
+
+        var currentLocation = window.location;
+
+        // console.log(currentLocation);
 
         $scope.printsetor = function(setor){
             if(setor=='RECEPCAO') return "Recepção";
@@ -39,7 +45,7 @@
                     vm.isAuthenticated = Principal.isAuthenticated;
                     console.log(vm.account);
 
-                    $http.get('http://localhost:9000/api/extend-users?userId.equals=' + vm.account.id, 
+                    $http.get('http://'+currentLocation.host+'/api/extend-users?userId.equals=' + vm.account.id, 
                         {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                     .then(function(response) {
                         console.log(response.data);

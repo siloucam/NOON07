@@ -11,7 +11,7 @@
             "fieldType": "Float"
         }
     ],
-    "changelogDate": "20180226131953",
+    "changelogDate": "20180306153158",
     "entityTableName": "produto",
     "dto": "no",
     "pagination": "infinite-scroll",

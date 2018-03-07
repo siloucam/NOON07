@@ -15,6 +15,9 @@
         vm.isNavbarCollapsed = true;
         vm.isAuthenticated = Principal.isAuthenticated;
 
+                var currentLocation = window.location;
+
+
         ProfileService.getProfileInfo().then(function(response) {
             vm.inProduction = response.inProduction;
             vm.swaggerEnabled = response.swaggerEnabled;
@@ -26,7 +29,7 @@
             Principal.identity().then(function(account) {
                 
                 if(account)
-                    {$http.get('http://localhost:9000/api/extend-users?userId.equals=' + account.id, 
+                    {$http.get('http://'+currentLocation.host+'/api/extend-users?userId.equals=' + account.id, 
                         {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                 .then(function(response) {
                     console.log(response.data);

@@ -11,8 +11,8 @@
                 "extendUser": "Extend User",
                 "cliente": "Cliente",
                 "produtoConsumido": "Produto Consumido",
-                "produto": "Produto",
                 "entrada": "Entrada",
+                "produto": "Produto",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -5,8 +5,7 @@
             "home": {
                 "title": "Extend Users",
                 "createLabel": "Criar novo Extend User",
-                "createOrEditLabel": "Criar ou editar Extend User",
-                "search": "Pesquisar por Extend User"
+                "createOrEditLabel": "Criar ou editar Extend User"
             },
             "created": "Um novo Extend User foi criado com o identificador {{ param }}",
             "updated": "Um Extend User foi atualizado com o identificador {{ param }}",
