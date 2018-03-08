@@ -52,14 +52,14 @@
 
 <div class="form-group">
     
-    <b>Comandas</b>   
+    <h3>Comandas</h3>   
 
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Total</span></dt>
+        <dt><span>Número de Comandas</span></dt>
         <dd>
             <span>{{vm.numerodecomandas}}</span>
         </dd>
-        <dt><span>Consumo</span></dt>
+        <dt><span>Total Geral</span></dt>
         <dd>
             <span>{{vm.consumo | currency}}</span>
         </dd>
@@ -69,7 +69,42 @@
 
 <div class="form-group">
     
-    <b>Produtos Consumidos</b>
+    <h3>Entradas</h3>
+
+    <table class="jh-table table table-striped">
+        <thead>
+            <tr>
+                <!-- <th><span>ID</span> </th> -->
+                <th><span>Qtd</span></th>
+                <th><span>Tipo de Entrada</span></th>
+                <th><span>Valor Uni.</span></th>
+                <th><span>Total</span></th>
+                <!-- <th><span>Cliente</span> </th> -->
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="entrada in vm.entradas track by entrada.id">
+                <!-- <td><a ui-sref="telefone-detail({id:telefone.id})">{{telefone.id}}</a></td> -->
+                <td>{{entrada.quantidade}}</td>
+                <td>{{entrada.nome}}</td>
+                <td>{{entrada.valor | currency:""}}</td>
+                <td>{{entrada.valor*entrada.quantidade | currency:""}}</td>                
+        </tr>
+    </tbody>
+</table>   
+    
+    <dt><span>Total de Entradas</span></dt>
+        <dd>
+            <span>{{vm.consumoentradas | currency}}</span>
+        </dd>
+
+</div>
+
+
+<div class="form-group">
+    
+    <h3>Produtos Consumidos</h3>
 
     <table class="jh-table table table-striped">
         <thead>
@@ -90,22 +125,22 @@
                 <td>{{produto.nome}}</td>
                 <td>{{produto.valor | currency:""}}</td>
                 <td>{{produto.valor*produto.quantidade | currency:""}}</td>
-                <td class="text-right" ng-if="vm.setor=='GERENCIA'">
-                    <div class="btn-group flex-btn-group-container">
-                        <button type="submit"
-                        ng-click="removeproduto(produto)"
-                        class="btn btn-default">
-                        <span class="glyphicon glyphicon-remove"></span>
-                        <span class="hidden-sm-down"></span>
-                    </button>
-                </div>
-            </td>
+                
         </tr>
     </tbody>
 </table>   
 
+<dt><span>Total de Produtos</span></dt>
+        <dd>
+            <span>{{vm.consumoprodutos | currency}}</span>
+        </dd>
 
 </div>
+
+
+
+
+
 </div>
 
 

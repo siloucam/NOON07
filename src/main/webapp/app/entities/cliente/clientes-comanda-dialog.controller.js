@@ -80,6 +80,7 @@
             consumido.nome = vm.entrada.nome;
             consumido.idproduto = 0;
             consumido.quantidade = 1;
+            consumido.identrada = vm.entrada.id;
 
             ProdutoConsumido.save(consumido, function(){
 

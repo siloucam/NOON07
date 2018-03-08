@@ -21,6 +21,8 @@
 
         vm.numeroindisponivel = false;
 
+        var currentLocation = window.location;
+
         loadEntradas();
 
         $timeout(function (){
@@ -30,7 +32,7 @@
         $scope.verificanumero = function(){
 
             if(vm.numerocomanda!=null){
-                $http.get('http://localhost:9000/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
+                $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
                     {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
                 .then(function(response) {                
                     if(response.data.length > 0){
@@ -46,7 +48,7 @@
         }
 
         function loadEntradas(){
-            $http.get('http://localhost:9000/api/entradas', 
+            $http.get('http://'+currentLocation.host+'/api/entradas', 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
                 console.log(response);
@@ -88,6 +90,7 @@
                     consumido.nome = vm.entrada.nome;
                     consumido.idproduto = 0;
                     consumido.quantidade = 1;
+                    consumido.identrada = vm.entrada.id;
 
                     ProdutoConsumido.save(consumido, function(){
                         console.log("Salvou");

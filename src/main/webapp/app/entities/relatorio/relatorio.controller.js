@@ -11,6 +11,10 @@
 
         var vm = this;
 
+        vm.dia = "";
+        vm.mes = "";
+        vm.ano = "";
+
         vm.relatorios = [];
         vm.clear = clear;
         vm.search = search;
@@ -21,7 +25,11 @@
         vm.numerodecomandas = 0;
         vm.consumo = 0;
 
+        vm.consumoprodutos = 0;
+        vm.consumoentradas = 0;
+
         vm.produtos = [];
+        vm.entradas = [];
 
         var comandasquery = "";
 
@@ -38,27 +46,48 @@
             vm.ano = data.getFullYear();
         }
 
+        function pad(num, size) {
+            var s = num+"";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
         $scope.gerarrelatiorio = function(){
 
             vm.gerado = true;
 
             vm.consumo = 0;
+
+            vm.consumoprodutos = 0;
+            vm.consumoentradas = 0;
+
             vm.produtos = [];
 
             comandasquery = "";
 
-            $http.get('http://'+currentLocation.host+'/api/comandas', 
+            var dataquery = "";
+
+            if(vm.dia!=""&&vm.mes!=""&&vm.ano!=""){
+                console.log("Pesquisando por dia");
+            }
+
+            // console.log('http://'+currentLocation.host+'/api/comandas?status.in=FECHADA&data.equals='+vm.ano+"-"+pad(vm.mes,2)+"-"+pad(vm.dia,2));
+
+            $http.get('http://'+currentLocation.host+'/api/comandas?status.in=FECHADA&data.equals='+vm.ano+"-"+pad(vm.mes,2)+"-"+pad(vm.dia,2), 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
             .then(function(response) {
 
-                vm.comandas = response.data;
-                vm.numerodecomandas = vm.comandas.length;
-                console.log(vm.comandas);
+                if(response.data.length > 0){
 
-                for(var i=0;i<vm.comandas.length;i++){
+                    vm.comandas = response.data;
+                    vm.numerodecomandas = vm.comandas.length;
+                    console.log(vm.comandas);
+
+                    for(var i=0;i<vm.comandas.length;i++){
                     // console.log(i);
                     // console.log(vm.comandas[i]);
                     vm.consumo += vm.comandas[i].total;
+                    console.log("Comanda " + vm.comandas[i].numero + " Total: " + vm.comandas[i].total);
                     // comandasquery.push(vm.comandas[i].id);
                     if(i==0){
                         comandasquery = comandasquery + "comandaId.in=" + vm.comandas[i].id;
@@ -68,10 +97,12 @@
                     
                 }
 
+
                 consumoComanda();
+            }
 
 
-            });
+        });
 
         };
 
@@ -88,16 +119,13 @@
 
                     var achou = false;
 
-                    for(var j = 0; j < vm.produtos.length; j++){
-
-                        if(vm.produtos[j].idproduto==0){
-                            vm.produtos[j].nome = "Entradas";
-                        }
-
+                    if(response.data[i].idproduto!=0){
+                        for(var j = 0; j < vm.produtos.length; j++){
 
                         if(vm.produtos[j].idproduto == response.data[i].idproduto){
                             achou = true;
                             vm.produtos[j].quantidade += response.data[i].quantidade;
+                            vm.consumoprodutos += response.data[i].quantidade*response.data[i].valor;
                             break;
                         }
 
@@ -105,7 +133,32 @@
 
                     if(!achou){
                         vm.produtos.push(response.data[i]);
+                        vm.consumoprodutos += response.data[i].quantidade*response.data[i].valor;
                     }
+
+                    }else{
+                        if(response.data[i].identrada!=0){
+                            for(var j = 0; j < vm.entradas.length; j++){
+
+                        if(vm.entradas[j].identrada == response.data[i].identrada){
+                            achou = true;
+                            vm.entradas[j].quantidade += response.data[i].quantidade;
+                            vm.consumoentradas += response.data[i].valor;
+                            break;
+                        }
+
+                    }
+
+                    if(!achou){
+                        vm.entradas.push(response.data[i]);
+                        vm.consumoentradas += response.data[i].valor;
+                    }
+                        }
+                    }
+
+                    
+
+                    
 
                 }
 

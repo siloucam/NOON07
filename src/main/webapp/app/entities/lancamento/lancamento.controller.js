@@ -29,79 +29,93 @@
         vm.isSaving = false;
         var i = 0;
 
+
+
+
         var currentLocation = window.location;
 
         // loadAll();
 
-        $scope.add = function(produto){
+        function makeid() {
+          var text = "";
+          var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
-            var achou = false;
+          for (var i = 0; i < 5; i++)
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-            for(var i = 0; i < vm.produtosadicionados.length; i++){
-
-                if(vm.produtosadicionados[i].id == produto.id){
-                    achou = true;
-                    vm.produtosadicionados[i].quantidade++;
-                }
-
-            }
-
-            if(!achou){
-                produto.quantidade = 1;
-                vm.produtosadicionados.push(produto);
-            }
-
-
+        return text;
         }
 
-        $scope.remove = function(produto){
+    $scope.add = function(produto){
 
-            for(var i = 0; i < vm.produtosadicionados.length; i++){
+        var achou = false;
 
-                if(vm.produtosadicionados[i].id == produto.id){
+        for(var i = 0; i < vm.produtosadicionados.length; i++){
 
-                    if(vm.produtosadicionados[i].quantidade > 1){
-                        vm.produtosadicionados[i].quantidade--;
-                    }else{
-                        if(vm.produtosadicionados[i].quantidade == 1){
-                            vm.produtosadicionados.splice(i, 1);
-                        }    
-                    }
-
-
-                }
-
+            if(vm.produtosadicionados[i].id == produto.id){
+                achou = true;
+                vm.produtosadicionados[i].quantidade++;
             }
 
         }
 
-        $scope.exclui = function(produto){
-        
-            for(var i = 0; i < vm.produtosadicionados.length; i++){
+        if(!achou){
+            produto.quantidade = 1;
+            vm.produtosadicionados.push(produto);
+        }
 
-                if(vm.produtosadicionados[i].id == produto.id){
-                    vm.produtosadicionados.splice(i, 1);
+
+    }
+
+    $scope.remove = function(produto){
+
+        for(var i = 0; i < vm.produtosadicionados.length; i++){
+
+            if(vm.produtosadicionados[i].id == produto.id){
+
+                if(vm.produtosadicionados[i].quantidade > 1){
+                    vm.produtosadicionados[i].quantidade--;
+                }else{
+                    if(vm.produtosadicionados[i].quantidade == 1){
+                        vm.produtosadicionados.splice(i, 1);
+                    }    
                 }
+
 
             }
 
         }
 
-        $scope.lancar = function(){
+    }
 
-            vm.isSaving = true;
+    $scope.exclui = function(produto){
 
-            i = 0;
+        for(var i = 0; i < vm.produtosadicionados.length; i++){
 
-            var consumido = new ProdutoConsumido();
+            if(vm.produtosadicionados[i].id == produto.id){
+                vm.produtosadicionados.splice(i, 1);
+            }
 
-            consumido.comanda = vm.comanda;
-            consumido.valor = vm.produtosadicionados[i].valor;
-            consumido.nome = vm.produtosadicionados[i].nome;
-            consumido.idproduto = vm.produtosadicionados[i].id;
-            consumido.quantidade = vm.produtosadicionados[i].quantidade;
+        }
 
-            ProdutoConsumido.save(consumido, onSaveSuccess, onSaveError);
+    }
+
+    $scope.lancar = function(){
+
+        vm.isSaving = true;
+
+        i = 0;
+
+        var consumido = new ProdutoConsumido();
+
+        consumido.comanda = vm.comanda;
+        consumido.valor = vm.produtosadicionados[i].valor;
+        consumido.nome = vm.produtosadicionados[i].nome;
+        consumido.idproduto = vm.produtosadicionados[i].id;
+        consumido.quantidade = vm.produtosadicionados[i].quantidade;
+        consumido.identrada = 0;
+
+        ProdutoConsumido.save(consumido, onSaveSuccess, onSaveError);
                 // console.log(consumido);
 
                 // vm.isSaving = false
@@ -145,11 +159,11 @@
                     vm.produtos = [];
                 }else{
                     $http.get('http://'+currentLocation.host+'/api/produtos?nome.contains='+ vm.nomeproduto, 
-                    {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
-                .then(function(response) {
-                    console.log(response);
+                        {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
+                    .then(function(response) {
+                        console.log(response);
 
-                    vm.produtos = response.data;
+                        vm.produtos = response.data;
                         // if(response.data.length > 0){
                         //     vm.produto = response.data[0].nome;
                         //     vm.produtonaoencontrado = false;
@@ -166,9 +180,9 @@
 
             $scope.buscacomanda = function(){
 
-               $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
+             $http.get('http://'+currentLocation.host+'/api/comandas?status.in=ABERTA&numero.equals='+ vm.numerocomanda, 
                 {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
-               .then(function(response) {
+             .then(function(response) {
                 console.log(response);
 
                 if(response.data.length > 0){
@@ -180,9 +194,9 @@
                     vm.cliente = null;
                 }
             });
-           }
+         }
 
-           function loadAll() {
+         function loadAll() {
 
             vm.comanda = null;
 
@@ -197,11 +211,11 @@
             vm.isSaving = false;        
 
             $http.get('http://'+currentLocation.host+'/api/produtos', 
-                    {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
-                .then(function(response) {
-                    console.log(response);
+                {headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTUyMTgxMzMyMX0.He3bRKEVAk5Lg2yqGK_80Kw_dUaPwYU26coDu_Ba0uIl99H8Ga0K6SVtn4TXGmjIeMWrgoBPikj0MtKxxpKYPA'}})
+            .then(function(response) {
+                console.log(response);
 
-                    vm.produtos = response.data;
+                vm.produtos = response.data;
                         // if(response.data.length > 0){
                         //     vm.produto = response.data[0].nome;
                         //     vm.produtonaoencontrado = false;
@@ -228,27 +242,27 @@
     }
 
     function clear() {
-        
-            vm.comanda = null;
 
-            vm.numerocomanda = null;
+        vm.comanda = null;
 
-            vm.nomeproduto = null;
+        vm.numerocomanda = null;
 
-            vm.lancamentos = [];
+        vm.nomeproduto = null;
 
-            vm.cliente = null;
-            vm.comandanaoencontrada = false;
+        vm.lancamentos = [];
 
-            vm.produtos = [];
-            vm.produtosadicionados = [];
+        vm.cliente = null;
+        vm.comandanaoencontrada = false;
 
-            vm.isSaving = false;     
+        vm.produtos = [];
+        vm.produtosadicionados = [];
 
-            i = 0;
+        vm.isSaving = false;     
 
-    }
-
+        i = 0;
 
     }
+
+
+}
 })();
